@@ -9,23 +9,31 @@ public class Utilisateur {
 	
 	private String nom;
 	
+	private String login;
+	
+	private String password;
+	
 	private String service;
 	
 	private Role role;
+
 	
-	
-	
-	public Utilisateur(int id, String nom, String service, Role role) {
+	public Utilisateur(int id, String nom, String login, String password, String service, Role role) {
 		super();
 		this.id = id;
 		this.nom = nom;
+		this.login = login;
+		this.password = password;
 		this.service = service;
 		this.role = role;
 	}
-	
+
+
 	public Utilisateur(ResultSet result) throws SQLException{
 		this.id = result.getInt("utilisateur_id");
 		this.nom = result.getString("nom");
+		this.login = result.getString("login");
+		this.password = result.getString("password");
 		this.service = result.getString("service");
 		this.role = role(result.getString("role"));
 	}
@@ -58,7 +66,25 @@ public class Utilisateur {
 		this.nom = nom;
 	}
 
+	
+	public String getLogin() {
+		return login;
+	}
 
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 
 	public String getService() {

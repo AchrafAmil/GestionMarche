@@ -14,11 +14,15 @@ public class Projet {
 	private String licences_logiciels;
 	private Date date;
 	private int budget; // en MAD
+	private Etat validationPertinence ;
+	private Etat validationBudget ;
 	private List<Tache> taches;
 	int utilisateur_id; // used id
 	
+	
+	
 	public Projet(int id, String objectif, String materiel_requis, String licences_logiciels, Date date, int budget,
-			List<Tache> taches, int utilisateur_id) {
+			Etat validation_pertinence, Etat validation_budget, List<Tache> taches, int utilisateur_id) {
 		super();
 		this.id = id;
 		this.objectif = objectif;
@@ -26,6 +30,8 @@ public class Projet {
 		this.licences_logiciels = licences_logiciels;
 		this.date = date;
 		this.budget = budget;
+		this.validationPertinence = validation_pertinence;
+		this.validationBudget = validation_budget;
 		if(taches!=null)
 			this.taches = taches;
 		else
@@ -40,6 +46,8 @@ public class Projet {
 		this.licences_logiciels = result.getString("licences_logiciels");
 		this.date = result.getDate("date");
 		this.budget = result.getInt("budget");
+		this.validationPertinence = etat(result.getString("validation_pertinence"));
+		this.validationBudget = etat(result.getString("validation_budget"));
 		this.utilisateur_id = result.getInt("utilisateur_id");
 		this.taches = new ArrayList<>();
 		ResultSet t =
@@ -86,27 +94,68 @@ public class Projet {
 	public void setBudget(int budget) {
 		this.budget = budget;
 	}
+	
+	public Etat getValidationPertinence() {
+		return validationPertinence;
+	}
+
+	public void setValidationPertinence(Etat validationPertinence) {
+		this.validationPertinence = validationPertinence;
+	}
+
+	public Etat getValidationBudget() {
+		return validationBudget;
+	}
+
+	public void setValidationBudget(Etat validationBudget) {
+		this.validationBudget = validationBudget;
+	}
+
 	public List<Tache> getTaches() {
 		return taches;
 	}
 	public void setTaches(List<Tache> taches) {
 		this.taches = taches;
 	}
-	public int getFrom() {
+	public int getUtilisateurId() {
 		return utilisateur_id;
 	}
-	public void setFrom(int from) {
+	public void setUtilisateurId(int from) {
 		this.utilisateur_id = from;
 	}
+
 
 	@Override
 	public String toString() {
 		return "Projet [id=" + id + ", objectif=" + objectif + ", materiel_requis=" + materiel_requis
-				+ ", licences_logiciels=" + licences_logiciels + ", date=" + date + ", budget=" + budget + ", taches="
-				+ taches + ", utilisateur_id=" + utilisateur_id + "]";
+				+ ", licences_logiciels=" + licences_logiciels + ", date=" + date + ", budget=" + budget
+				+ ", validationPertinence=" + validationPertinence + ", validationBudget=" + validationBudget
+				+ ", taches=" + taches + ", utilisateur_id=" + utilisateur_id + "]";
+	}
+
+
+
+
+
+
+
+	enum Etat {
+		EN_ATTENTE, VALIDE, NON_VALIDE
 	}
 	
-	
+
+	public static Etat etat(String e){
+		switch(e){
+		case "EN_ATTENTE":
+			return Etat.EN_ATTENTE;
+		case "VALIDE":
+			return Etat.VALIDE;
+		case "NON_VALIDE":
+			return Etat.NON_VALIDE;
+		default:
+			return Etat.EN_ATTENTE;
+		}
+	}
 	
 	
 }

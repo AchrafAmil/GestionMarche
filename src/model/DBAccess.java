@@ -31,9 +31,10 @@ import java.util.List;
 public class DBAccess {
 
 	private static final String DB_LOGIN = "root";
-	private static final String DB_PASSWORD = "put_yours";
+	private static final String DB_PASSWORD = "t0p0fthet0p";
 	
 	protected static Connection con;
+	public static Utilisateur session;
 	
 	public static void setupConnection() throws SQLException{
 		con =
@@ -72,12 +73,25 @@ public class DBAccess {
 		
 	}
 	
-	public boolean query(String q) throws SQLException{
+	public static boolean query(String q) throws SQLException{
 		if(con==null)
 			setupConnection();
 		return con.createStatement().execute(q);
 	}
 
+	public static Utilisateur login(String login, String password) throws SQLException{
+		if(con==null)
+			setupConnection();
+		
+		ResultSet result = 
+				con.createStatement().executeQuery("SELECT * FROM utilisateur WHERE login='"+login+"' AND password='"+password+"';");
+		
+		if(!result.next()) //empty query result
+			return null; 
+		
+		return new Utilisateur(result.getInt("utilisateur_id"), result.getString("nom"), result.getString("login"),
+				result.getString("password"), result.getString("service"), Utilisateur.role(result.getString("role")));
+	}
 	
 	
 	/* NO MAIN METHOD IS MEANT TO BE DECLARED AT A MODEL CLASS, THIS IS JUST A DUMMY TEST OF OUR DB */
