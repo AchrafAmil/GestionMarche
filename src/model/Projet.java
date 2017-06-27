@@ -9,25 +9,27 @@ import java.util.List;
 public class Projet {
 	
 	private int id;
+	private String nom;
 	private String objectif;
-	private String materiel_requis;
-	private String licences_logiciels;
+	private String materielRequis;
+	private String licencesLogiciels;
 	private Date date;
 	private int budget; // en MAD
 	private Etat validationPertinence ;
 	private Etat validationBudget ;
 	private List<Tache> taches;
-	int utilisateur_id; // used id
+	private Utilisateur utilisateur; // used id
 	
 	
 	
-	public Projet(int id, String objectif, String materiel_requis, String licences_logiciels, Date date, int budget,
-			Etat validation_pertinence, Etat validation_budget, List<Tache> taches, int utilisateur_id) {
+	public Projet(int id,String nom, String objectif, String materiel_requis, String licences_logiciels, Date date, int budget,
+			Etat validation_pertinence, Etat validation_budget, List<Tache> taches, Utilisateur utilisateur) {
 		super();
 		this.id = id;
+		this.nom = nom;
 		this.objectif = objectif;
-		this.materiel_requis = materiel_requis;
-		this.licences_logiciels = licences_logiciels;
+		this.materielRequis = materiel_requis;
+		this.licencesLogiciels = licences_logiciels;
 		this.date = date;
 		this.budget = budget;
 		this.validationPertinence = validation_pertinence;
@@ -36,19 +38,24 @@ public class Projet {
 			this.taches = taches;
 		else
 			this.taches = new ArrayList<>();
-		this.utilisateur_id = utilisateur_id;
+		this.utilisateur = utilisateur;
 	}
 	
 	public Projet(ResultSet result) throws SQLException{
 		this.id = result.getInt("projet_id");
+		this.nom = result.getString("nom");
 		this.objectif = result.getString("objectif");
-		this.materiel_requis = result.getString("materiel_requis");
-		this.licences_logiciels = result.getString("licences_logiciels");
+		this.materielRequis = result.getString("materiel_requis");
+		this.licencesLogiciels = result.getString("licences_logiciels");
 		this.date = result.getDate("date");
 		this.budget = result.getInt("budget");
 		this.validationPertinence = etat(result.getString("validation_pertinence"));
 		this.validationBudget = etat(result.getString("validation_budget"));
-		this.utilisateur_id = result.getInt("utilisateur_id");
+		ResultSet u =
+				DBAccess.con.createStatement().executeQuery("SELECT * FROM utilisateur WHERE utilisateur_id="
+							+result.getInt("utilisateur_id"));
+		u.next();
+		this.utilisateur = new Utilisateur(u);
 		this.taches = new ArrayList<>();
 		ResultSet t =
 				DBAccess.con.createStatement().executeQuery("SELECT * FROM tache WHERE projet_id="+this.id);
@@ -64,23 +71,32 @@ public class Projet {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
 	public String getObjectif() {
 		return objectif;
 	}
 	public void setObjectif(String objectif) {
 		this.objectif = objectif;
 	}
-	public String getMateriel_requis() {
-		return materiel_requis;
+	public String getMaterielRequis() {
+		return materielRequis;
 	}
-	public void setMateriel_requis(String materiel_requis) {
-		this.materiel_requis = materiel_requis;
+	public void setMaterielRequis(String materielRequis) {
+		this.materielRequis = materielRequis;
 	}
-	public String getlicences_logiciels() {
-		return licences_logiciels;
+	public String getLicencesLogiciels() {
+		return licencesLogiciels;
 	}
-	public void setlicences_logiciels(String licences_logiciels) {
-		this.licences_logiciels = licences_logiciels;
+	public void setLicencesLogiciels(String licencesLogiciels) {
+		this.licencesLogiciels = licencesLogiciels;
 	}
 	public Date getDate() {
 		return date;
@@ -117,20 +133,20 @@ public class Projet {
 	public void setTaches(List<Tache> taches) {
 		this.taches = taches;
 	}
-	public int getUtilisateurId() {
-		return utilisateur_id;
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
 	}
-	public void setUtilisateurId(int from) {
-		this.utilisateur_id = from;
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Projet [id=" + id + ", objectif=" + objectif + ", materiel_requis=" + materiel_requis
-				+ ", licences_logiciels=" + licences_logiciels + ", date=" + date + ", budget=" + budget
+		return "Projet [id=" + id + ", objectif=" + objectif + ", materiel_requis=" + materielRequis
+				+ ", licences_logiciels=" + licencesLogiciels + ", date=" + date + ", budget=" + budget
 				+ ", validationPertinence=" + validationPertinence + ", validationBudget=" + validationBudget
-				+ ", taches=" + taches + ", utilisateur_id=" + utilisateur_id + "]";
+				+ ", taches=" + taches + ", utilisateur_id=" + utilisateur + "]";
 	}
 
 

@@ -13,7 +13,7 @@ import model.DBAccess;
 import model.Utilisateur;
 import view.Authentification;
 import view.Inscription;
-import view.Table;
+import view.ListeDesProjets;
 
 public class AuthentificationController {
 	
@@ -45,7 +45,7 @@ public class AuthentificationController {
 
 				DBAccess.session = user;
 			
-				(new Table()).setVisible(true);
+				(new ListeDesProjets()).setVisible(true);
 				
 				viewCallback.dispose();
 
