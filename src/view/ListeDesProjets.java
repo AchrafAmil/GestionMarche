@@ -1,14 +1,18 @@
 package view;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
 import javax.swing.GroupLayout;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.SystemColor;
+
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 import controller.ListeDesProjetsController;
 
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 
 import java.awt.Color;
@@ -21,7 +25,9 @@ import java.awt.Color;
 
 public class ListeDesProjets extends javax.swing.JFrame {
 
+	private JPanel contentPane;
 	ListeDesProjetsController controller;
+	public JButton btnNouveauProjet;
 	
     /**
      * Creates new form NewJFrame
@@ -63,6 +69,11 @@ public class ListeDesProjets extends javax.swing.JFrame {
         JLabel lblListeDesProjets = new JLabel("Liste des projets");
         lblListeDesProjets.setBackground(new Color(230, 230, 250));
         lblListeDesProjets.setFont(new Font("Trebuchet MS", Font.ITALIC, 19));
+        
+        btnNouveauProjet = new JButton("Nouveau Projet");
+        btnNouveauProjet.setBackground(SystemColor.activeCaption);
+        btnNouveauProjet.setForeground(new Color(255, 255, 255));
+        btnNouveauProjet.setFont(new Font("Calibri", Font.BOLD, 16));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
@@ -74,17 +85,22 @@ public class ListeDesProjets extends javax.swing.JFrame {
         					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 843, GroupLayout.PREFERRED_SIZE))
         				.addGroup(layout.createSequentialGroup()
         					.addGap(360)
-        					.addComponent(lblListeDesProjets, GroupLayout.PREFERRED_SIZE, 190, GroupLayout.PREFERRED_SIZE)))
+        					.addComponent(lblListeDesProjets, GroupLayout.PREFERRED_SIZE, 190, GroupLayout.PREFERRED_SIZE))
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(399)
+        					.addComponent(btnNouveauProjet)))
         			.addContainerGap(85, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-        	layout.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(Alignment.LEADING, layout.createSequentialGroup()
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
         			.addGap(34)
         			.addComponent(lblListeDesProjets)
         			.addGap(26)
         			.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 229, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap(124, Short.MAX_VALUE))
+        			.addGap(47)
+        			.addComponent(btnNouveauProjet)
+        			.addContainerGap(54, Short.MAX_VALUE))
         );
         getContentPane().setLayout(layout);
 

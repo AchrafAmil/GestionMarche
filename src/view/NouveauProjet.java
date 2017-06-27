@@ -12,6 +12,9 @@ import javax.swing.JMenuItem;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
+
+import controller.NouveauProjetController;
+
 import javax.swing.UIManager;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -28,17 +31,20 @@ public class NouveauProjet extends JFrame {
 
 	private JPanel contentPane;
 	
-	private JMenuBar menuBar = new JMenuBar();
-	private JMenuItem nouveau = new JMenuItem("Nouveau");
-	private JMenuItem projet = new JMenuItem("Liste projets");
-	private JMenuItem tache = new JMenuItem("T\u00E2ches");
-	private final JLabel lblNomDuProjet = new JLabel("Nom du projet");
-	private final JTextField nom_projet = new JTextField();
-	private final JLabel lblObjectif = new JLabel("Objectif");
-	private final JTextField objectif = new JTextField();
-	private final JLabel lblMatrielRequis = new JLabel("Mat\u00E9riel Requis");
-	private JTextField duree;
-	private JTextField budget;
+	private NouveauProjetController controller = new NouveauProjetController(this);
+	
+	public JMenuBar menuBar = new JMenuBar();
+	public JMenuItem nouveau = new JMenuItem("Nouveau");
+	public JMenuItem projet = new JMenuItem("Liste projets");
+	public JMenuItem tache = new JMenuItem("T\u00E2ches");
+	public final JLabel lblNomDuProjet = new JLabel("Nom du projet");
+	public final JTextField nom_projet = new JTextField();
+	public final JLabel lblObjectif = new JLabel("Objectif");
+	public final JTextField objectif = new JTextField();
+	public final JLabel lblMatrielRequis = new JLabel("Mat\u00E9riel Requis");
+	public JTextField budget;
+	public JTextArea materiel;
+	public JTextArea licence;
 	
 	
 	/**
@@ -62,7 +68,7 @@ public class NouveauProjet extends JFrame {
 	 */
 	public NouveauProjet() {
 		setTitle("Nouveau Projet");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 900, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -126,7 +132,7 @@ public class NouveauProjet extends JFrame {
 		
 		panel.add(lblMatrielRequis);
 		
-		JTextArea materiel = new JTextArea();
+		materiel = new JTextArea();
 		materiel.setBounds(134, 114, 248, 61);
 		panel.add(materiel);
 		
@@ -135,38 +141,31 @@ public class NouveauProjet extends JFrame {
 		lblLicencesLogiciels.setBounds(414, 107, 128, 38);
 		panel.add(lblLicencesLogiciels);
 		
-		JTextArea licence = new JTextArea();
+		licence = new JTextArea();
 		licence.setBounds(552, 114, 248, 61);
 		panel.add(licence);
 		
-		JLabel lblDure = new JLabel("Dur\u00E9e Estim\u00E9e");
-		lblDure.setFont(new Font("Calibri", Font.BOLD, 17));
-		lblDure.setBounds(13, 207, 128, 38);
-		panel.add(lblDure);
-		
-		duree = new JTextField();
-		duree.setColumns(10);
-		duree.setBounds(134, 216, 248, 20);
-		panel.add(duree);
-		
 		JLabel lblEstimationBudget = new JLabel("Budget Estim\u00E9");
 		lblEstimationBudget.setFont(new Font("Calibri", Font.BOLD, 17));
-		lblEstimationBudget.setBounds(414, 207, 150, 38);
+		lblEstimationBudget.setBounds(192, 207, 150, 38);
 		panel.add(lblEstimationBudget);
 		
 		budget = new JTextField();
 		budget.setColumns(10);
-		budget.setBounds(552, 216, 248, 20);
+		budget.setBounds(315, 216, 248, 20);
 		panel.add(budget);
 		
 		JButton btnNewButton = new JButton("Valider");
 		btnNewButton.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 18));
 		btnNewButton.setBounds(223, 306, 135, 57);
+		btnNewButton.addActionListener(controller.new ValiderButtonListener());
 		panel.add(btnNewButton);
+		
 		
 		JButton btnAnnuler = new JButton("Annuler");
 		btnAnnuler.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				NouveauProjet.this.dispose();
 			}
 		});
 		btnAnnuler.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 18));
