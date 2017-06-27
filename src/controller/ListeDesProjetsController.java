@@ -11,10 +11,8 @@ import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
-import controller.ListeDesProjetsController.NouveaProjetButtonListener;
 import model.DBAccess;
 import model.Projet;
-import view.Inscription;
 import view.ListeDesProjets;
 import view.NouveauProjet;
 
