@@ -93,6 +93,18 @@ public class DBAccess {
 				result.getString("password"), result.getString("service"), Utilisateur.role(result.getString("role")));
 	}
 	
+	public static void validerPertinence(Projet p, boolean valider) throws SQLException{
+		query("UPDATE projet SET validation_pertinence='"+
+				(valider? "VALIDE":"NON_VALIDE")	
+				+"' WHERE projet_id='"+p.getId()+"' ;");
+	}
+	
+	public static void validerBudget(Projet p, boolean valider) throws SQLException{
+		query("UPDATE projet SET validation_budget='"+
+				(valider? "VALIDE":"NON_VALIDE")	
+				+"' WHERE projet_id='"+p.getId()+"' ;");
+	}
+	
 	
 	/* NO MAIN METHOD IS MEANT TO BE DECLARED AT A MODEL CLASS, THIS IS JUST A DUMMY TEST OF OUR DB */
 	

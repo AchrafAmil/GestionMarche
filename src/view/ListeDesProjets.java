@@ -1,21 +1,19 @@
 package view;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
 import javax.swing.GroupLayout;
 import javax.swing.JTextField;
 import java.awt.Font;
-import java.awt.SystemColor;
-
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 import controller.ListeDesProjetsController;
 
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTable;
 
 import java.awt.Color;
+import javax.swing.JButton;
+import java.awt.SystemColor;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -25,7 +23,6 @@ import java.awt.Color;
 
 public class ListeDesProjets extends javax.swing.JFrame {
 
-	private JPanel contentPane;
 	ListeDesProjetsController controller;
 	public JButton btnNouveauProjet;
 	
@@ -56,7 +53,7 @@ public class ListeDesProjets extends javax.swing.JFrame {
 
             },
             new String [] {
-            		"Nom du projet :", "Proposé par :", "Objectif:" , "Estimation du Budget (en MAD) :"
+            		"Nom du projet :", "Propose par :", "Objectif:" , "Estimation du Budget(MAD) :" , "Validation du chef" , "Validation du budget"
             }
         ){
         	@Override

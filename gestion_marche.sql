@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 26, 2017 at 05:01 AM
+-- Generation Time: Jun 28, 2017 at 01:13 AM
 -- Server version: 5.7.18-0ubuntu0.16.04.1
 -- PHP Version: 7.0.18-0ubuntu0.16.04.1
 
@@ -52,11 +52,14 @@ INSERT INTO `commentaire` (`commentaire_id`, `utilisateur_id`, `tache_id`, `text
 
 CREATE TABLE `projet` (
   `projet_id` int(11) NOT NULL,
+  `nom` varchar(45) DEFAULT NULL,
   `objectif` text NOT NULL,
   `materiel_requis` text,
   `licences_logiciels` text,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `budget` int(11) NOT NULL,
+  `validation_pertinence` varchar(15) NOT NULL DEFAULT 'EN_ATTENTE',
+  `validation_budget` varchar(15) NOT NULL DEFAULT 'EN_ATTENTE',
   `utilisateur_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -64,9 +67,16 @@ CREATE TABLE `projet` (
 -- Dumping data for table `projet`
 --
 
-INSERT INTO `projet` (`projet_id`, `objectif`, `materiel_requis`, `licences_logiciels`, `date`, `budget`, `utilisateur_id`) VALUES
-(1, 'Recherche scientifique dans les réseaux de neurones et le Machine Learning.', 'Ordinateurs et serveurs locaux.', 'Cloud Platform License.', '2017-06-26 00:59:02', 100000, 1),
-(2, 'Restructuration du park informatique.', NULL, 'Adobe Suit', '2017-06-26 00:59:02', 50000, 3);
+INSERT INTO `projet` (`projet_id`, `nom`, `objectif`, `materiel_requis`, `licences_logiciels`, `date`, `budget`, `validation_pertinence`, `validation_budget`, `utilisateur_id`) VALUES
+(1, 'NeuroX', 'Recherche scientifique dans les réseaux de neurones et le Machine Learning.', 'Ordinateurs et serveurs locaux.', 'Cloud Platform License.', '2017-06-26 00:59:02', 100000, 'EN_ATTENTE', 'EN_ATTENTE', 1),
+(2, 'Taahil 2', 'Restructuration du park informatique de toute l\'entreprise.', NULL, 'Adobe Suit', '2017-06-26 00:59:02', 50000, 'EN_ATTENTE', 'EN_ATTENTE', 3),
+(3, 'X112', 'Dominer le monde', '', '', '2017-06-27 19:56:40', 54000000, 'EN_ATTENTE', 'EN_ATTENTE', 6),
+(4, 'Apollo8749', 'Conquérire la galaxy', '', '', '2017-06-27 20:07:49', 48000000, 'VALIDE', 'VALIDE', 6),
+(5, 'foo', 'bar', '', '', '2017-06-27 20:12:27', 87000, 'VALIDE', 'NON_VALIDE', 1),
+(6, 'yeah', 'yp', '', '', '2017-06-27 20:14:00', 5422, 'EN_ATTENTE', 'EN_ATTENTE', 1),
+(7, 'hello', 'ah', '', '', '2017-06-27 20:14:55', 784589, 'EN_ATTENTE', 'EN_ATTENTE', 1),
+(8, 'test', 'testa', '', '', '2017-06-27 20:16:07', 41000, 'EN_ATTENTE', 'EN_ATTENTE', 1),
+(9, 'Projet test', 'Test fonctionnel', 'Rien', '', '2017-06-27 20:18:05', 10000, 'VALIDE', 'EN_ATTENTE', 16);
 
 -- --------------------------------------------------------
 
@@ -80,7 +90,6 @@ CREATE TABLE `tache` (
   `description` text NOT NULL,
   `deadline` date NOT NULL,
   `duree` int(11) NOT NULL,
-  `etat` varchar(15) NOT NULL,
   `projet_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -88,9 +97,9 @@ CREATE TABLE `tache` (
 -- Dumping data for table `tache`
 --
 
-INSERT INTO `tache` (`tache_id`, `num`, `description`, `deadline`, `duree`, `etat`, `projet_id`) VALUES
-(1, 1, 'Analyse des besoins, optimisation du budget et achat du matériel. ', '2017-07-31', 7, 'NON_VALIDE', 1),
-(2, 2, 'Recrutement d\'experts en ML.', '2017-07-15', 15, 'NON_VALIDE', 1);
+INSERT INTO `tache` (`tache_id`, `num`, `description`, `deadline`, `duree`, `projet_id`) VALUES
+(1, 1, 'Analyse des besoins, optimisation du budget et achat du matériel. ', '2017-07-31', 7, 1),
+(2, 2, 'Recrutement d\'experts en ML.', '2017-07-15', 15, 1);
 
 -- --------------------------------------------------------
 
@@ -115,7 +124,11 @@ INSERT INTO `utilisateur` (`utilisateur_id`, `login`, `password`, `nom`, `servic
 (1, 'y.taoussi', 'secret', 'Yassine Taoussi', 'Informatique', 'EMPLOYE'),
 (2, 'e.philippe', '123', 'Édouard Philippe', 'Marketing', 'DIRECTEUR'),
 (3, 'm.dechazelles', 'pass', 'Martin de Chazelles', 'Informatique', 'EMPLOYE'),
-(4, 'a.ismaili', 'secret', 'Amine Ismaili', 'RH', 'CHEF');
+(4, 'a.ismaili', 'secret', 'Amine Ismaili', 'RH', 'CHEF'),
+(6, 'ach', 'pass', 'Achraf', 'Informatique', 'EMPLOYE'),
+(7, 'k.ouardighi', 'secret', 'Kamal Ouardighi', 'RH', 'EMPLOYE'),
+(10, 'y.bacha', 'pass', 'Yasmine Bacha', 'RH', 'EMPLOYE'),
+(16, 'test', 'test', 'Testeur numéro 1', 'Assurance qualité', 'EMPLOYE');
 
 --
 -- Indexes for dumped tables
@@ -147,7 +160,8 @@ ALTER TABLE `tache`
 -- Indexes for table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  ADD PRIMARY KEY (`utilisateur_id`);
+  ADD PRIMARY KEY (`utilisateur_id`),
+  ADD UNIQUE KEY `login` (`login`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -162,7 +176,7 @@ ALTER TABLE `commentaire`
 -- AUTO_INCREMENT for table `projet`
 --
 ALTER TABLE `projet`
-  MODIFY `projet_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `projet_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `tache`
 --
@@ -172,7 +186,7 @@ ALTER TABLE `tache`
 -- AUTO_INCREMENT for table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `utilisateur_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `utilisateur_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- Constraints for dumped tables
 --

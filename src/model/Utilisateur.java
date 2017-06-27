@@ -123,7 +123,7 @@ public class Utilisateur {
 
 
 
-	enum Role {
+	public enum Role {
 		EMPLOYE, CHEF, DIRECTEUR
 	}
 	

@@ -155,7 +155,7 @@ public class Projet {
 
 
 
-	enum Etat {
+	public enum Etat {
 		EN_ATTENTE, VALIDE, NON_VALIDE
 	}
 	
