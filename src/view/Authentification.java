@@ -20,11 +20,15 @@ import javax.swing.border.EmptyBorder;
 import controller.AuthentificationController;
 import model.DBAccess;
 import model.Utilisateur;
+import javax.swing.SwingConstants;
 
 public class Authentification extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField txtAuthentification;
 	private JTextField loginField;
 	private JPasswordField passwordField;
 	private AuthentificationController controller;
@@ -52,62 +56,64 @@ public class Authentification extends JFrame {
 		controller = new AuthentificationController(this);
 		setTitle("Authentification");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(350, 100, 650, 450);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(0, 128, 128));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 5, 414, 74);
-		panel.setToolTipText("");
-		panel.setBackground(SystemColor.activeCaption);
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(150, 34, 350, 345);
 		contentPane.add(panel);
-		panel.setLayout(new BorderLayout(0, 0));
-		
-		txtAuthentification = new JTextField();
-		txtAuthentification.setForeground(new Color(255, 255, 255));
-		txtAuthentification.setFont(new Font("Britannic Bold", Font.PLAIN, 38));
-		txtAuthentification.setBackground(SystemColor.activeCaption);
-		txtAuthentification.setEditable(false);
-		txtAuthentification.setText("  Authentification");
-		panel.add(txtAuthentification);
-		txtAuthentification.setColumns(10);
-		
-		JLabel lblLogin = new JLabel("Login");
-		lblLogin.setFont(new Font("Calibri", Font.PLAIN, 18));
-		lblLogin.setBounds(30, 129, 78, 28);
-		contentPane.add(lblLogin);
+		panel.setLayout(null);
 		
 		loginField = new JTextField();
-		loginField.setBounds(118, 134, 293, 20);
-		contentPane.add(loginField);
+		loginField.setBounds(30, 117, 287, 28);
+		panel.add(loginField);
+		loginField.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		loginField.setColumns(10);
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setFont(new Font("Calibri", Font.PLAIN, 18));
-		lblPassword.setBounds(30, 168, 78, 16);
-		contentPane.add(lblPassword);
-		
-		JLabel lblEntrerVotreLogin = new JLabel("Entrer votre login et password");
-		lblEntrerVotreLogin.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 16));
-		lblEntrerVotreLogin.setBounds(20, 90, 299, 20);
-		contentPane.add(lblEntrerVotreLogin);
-		
-		JButton btnSinscrire = new JButton("S'inscrire");
-		btnSinscrire.addActionListener((controller.new SinscrireButtonListener()) );
-		btnSinscrire.setFont(new Font("Cambria", Font.BOLD, 18));
-		btnSinscrire.setBounds(283, 212, 141, 38);
-		contentPane.add(btnSinscrire);
-		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(118, 167, 293, 20);
-		contentPane.add(passwordField);
+		lblPassword.setBounds(30, 158, 95, 26);
+		panel.add(lblPassword);
+		lblPassword.setFont(new Font("Candara", Font.BOLD | Font.ITALIC, 20));
 		
 		JButton btnSeConnecter = new JButton("Se Connecter");
+		btnSeConnecter.setForeground(new Color(255, 255, 255));
+		btnSeConnecter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnSeConnecter.setBounds(98, 240, 154, 31);
+		panel.add(btnSeConnecter);
+		btnSeConnecter.setBackground(new Color(32, 178, 170));
 		btnSeConnecter.setFont(new Font("Cambria", Font.BOLD, 18));
+		
+		JButton btnSinscrire = new JButton("S'inscrire");
+		btnSinscrire.setForeground(new Color(255, 255, 255));
+		btnSinscrire.setBounds(98, 282, 154, 31);
+		panel.add(btnSinscrire);
+		btnSinscrire.setBackground(new Color(0, 128, 128));
+		btnSinscrire.addActionListener((controller.new SinscrireButtonListener()) );
+		btnSinscrire.setFont(new Font("Cambria", Font.BOLD, 18));
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(30, 183, 287, 28);
+		panel.add(passwordField);
+		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSeConnecter.addActionListener( (controller.new LoginButtonListener(loginField, passwordField, contentPane)) );
-		btnSeConnecter.setBounds(118, 212, 155, 38);
-		contentPane.add(btnSeConnecter);
+		
+		JLabel lblLogin = new JLabel("Login");
+		lblLogin.setBounds(30, 95, 69, 26);
+		panel.add(lblLogin);
+		lblLogin.setFont(new Font("Candara", Font.BOLD | Font.ITALIC, 20));
+		
+		
+		JLabel lblAuthentification = new JLabel("Authentification");
+		lblAuthentification.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 35));
+		lblAuthentification.setBounds(45, 27, 257, 39);
+		panel.add(lblAuthentification);
 	}
 }

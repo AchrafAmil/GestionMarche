@@ -31,7 +31,7 @@ import java.util.List;
 public class DBAccess {
 
 	private static final String DB_LOGIN = "root";
-	private static final String DB_PASSWORD = "t0p0fthet0p";
+	private static final String DB_PASSWORD = "";
 	
 	protected static Connection con;
 	public static Utilisateur session;
@@ -39,7 +39,7 @@ public class DBAccess {
 	public static void setupConnection() throws SQLException{
 		con =
 				 DriverManager.getConnection("jdbc:mysql://localhost/gestion_marche?" +
-				 "user="+DB_LOGIN+"&password="+DB_PASSWORD+"&autoReconnect=true&useSSL=false");
+				 "user="+DB_LOGIN+"&password="+DB_PASSWORD);
 	}
 	
 	

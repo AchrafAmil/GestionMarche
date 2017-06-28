@@ -82,64 +82,75 @@ public class Inscription {
 	 */
 	private void initialize() {
 		frmInscription = new JFrame();
+		frmInscription.getContentPane().setBackground(new Color(0, 128, 128));
 		frmInscription.setTitle("Inscription");
-		frmInscription.setBounds(100, 100, 450, 300);
+		frmInscription.setBounds(350, 100, 650, 450);
 		frmInscription.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmInscription.getContentPane().setLayout(null);
 		
 		panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Formlaire d'inscription", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(64, 64, 64)));
-		panel.setBounds(10, 11, 414, 236);
+		panel.setBounds(10, 11, 614, 389);
 		frmInscription.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Nom");
-		lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, 17));
-		lblNewLabel.setBounds(10, 28, 73, 31);
+		lblNewLabel.setFont(new Font("Candara", Font.BOLD | Font.ITALIC, 19));
+		lblNewLabel.setBounds(20, 34, 73, 31);
 		panel.add(lblNewLabel);
-		lblService.setBounds(10, 90, 73, 31);
+		lblService.setBounds(20, 125, 73, 31);
 		panel.add(lblService);
-		lblService.setFont(new Font("Calibri", Font.PLAIN, 17));
+		lblService.setFont(new Font("Candara", Font.BOLD | Font.ITALIC, 19));
 		
 		JLabel label = new JLabel("Service");
-		label.setFont(new Font("Calibri", Font.PLAIN, 17));
-		label.setBounds(10, 57, 73, 31);
+		label.setFont(new Font("Candara", Font.BOLD | Font.ITALIC, 20));
+		label.setBounds(20, 76, 73, 31);
 		panel.add(label);
 		
 		JLabel lblLogin = new JLabel("Login");
-		lblLogin.setFont(new Font("Calibri", Font.PLAIN, 17));
-		lblLogin.setBounds(10, 123, 73, 31);
+		lblLogin.setFont(new Font("Candara", Font.BOLD | Font.ITALIC, 19));
+		lblLogin.setBounds(20, 174, 73, 31);
 		panel.add(lblLogin);
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setFont(new Font("Calibri", Font.PLAIN, 17));
-		lblPassword.setBounds(10, 155, 73, 31);
+		lblPassword.setFont(new Font("Candara", Font.BOLD | Font.ITALIC, 19));
+		lblPassword.setBounds(20, 216, 87, 31);
 		panel.add(lblPassword);
 		
 		nameField = new JTextField();
-		nameField.setBounds(93, 34, 298, 20);
+		nameField.setFont(new Font("Cambria", Font.PLAIN, 18));
+		nameField.setBounds(104, 34, 488, 31);
 		panel.add(nameField);
 		nameField.setColumns(10);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(93, 161, 298, 20);
+		passwordField.setFont(new Font("Cambria", Font.PLAIN, 18));
+		passwordField.setBounds(104, 216, 488, 31);
 		panel.add(passwordField);
 		
 		loginField = new JTextField();
+		loginField.setFont(new Font("Cambria", Font.PLAIN, 18));
 		loginField.setColumns(10);
-		loginField.setBounds(93, 129, 298, 20);
+		loginField.setBounds(104, 174, 488, 31);
 		panel.add(loginField);
 		
 		rdbtnDirecteur = new JRadioButton("Directeur");
-		rdbtnDirecteur.setBounds(90, 95, 109, 23);
+		rdbtnDirecteur.setBackground(new Color(255, 255, 255));
+		rdbtnDirecteur.setFont(new Font("Cambria", Font.PLAIN, 16));
+		rdbtnDirecteur.setBounds(133, 129, 109, 23);
 		panel.add(rdbtnDirecteur);
 		
-		rdbtnChef = new JRadioButton("Chef");
-		rdbtnChef.setBounds(195, 95, 99, 23);
+		rdbtnChef = new JRadioButton("Chef de Service");
+		rdbtnChef.setBackground(new Color(255, 255, 255));
+		rdbtnChef.setFont(new Font("Cambria", Font.PLAIN, 16));
+		rdbtnChef.setBounds(273, 129, 131, 23);
 		panel.add(rdbtnChef);
 		
-		rdbtnEmployer = new JRadioButton("Employé");
-		rdbtnEmployer.setBounds(296, 95, 109, 23);
+		rdbtnEmployer = new JRadioButton("Employe");
+		rdbtnEmployer.setBackground(new Color(255, 255, 255));
+		rdbtnEmployer.setFont(new Font("Cambria", Font.PLAIN, 16));
+		rdbtnEmployer.setBounds(462, 129, 109, 23);
 		panel.add(rdbtnEmployer);
 		
 		bG = new ButtonGroup();
@@ -148,23 +159,24 @@ public class Inscription {
 		bG.add(rdbtnDirecteur);
 		
 		serviceField = new JTextField();
+		serviceField.setFont(new Font("Cambria", Font.PLAIN, 18));
 		serviceField.setColumns(10);
-		serviceField.setBounds(93, 62, 298, 20);
+		serviceField.setBounds(104, 77, 488, 31);
 		panel.add(serviceField);
 		
 		JButton btnVider = new JButton("Vider");
-		btnVider.setBackground(SystemColor.activeCaption);
+		btnVider.setBackground(new Color(47, 79, 79));
 		btnVider.setFont(new Font("Cambria Math", Font.BOLD, 18));
 		btnVider.setForeground(Color.WHITE);
-		btnVider.setBounds(304, 192, 89, 31);
+		btnVider.setBounds(345, 295, 169, 40);
 		btnVider.addActionListener(controller.new ViderButtonListener());
 		panel.add(btnVider);
 		
 		JButton btnValider = new JButton("Valider");
 		btnValider.setForeground(Color.WHITE);
-		btnValider.setBackground(SystemColor.activeCaption);
+		btnValider.setBackground(new Color(46, 139, 87));
 		btnValider.setFont(new Font("Cambria", Font.BOLD, 18));
-		btnValider.setBounds(185, 192, 99, 31);
+		btnValider.setBounds(133, 295, 169, 41);
 		btnValider.addActionListener(controller.new ValiderButtonListener());
 		panel.add(btnValider);
 		

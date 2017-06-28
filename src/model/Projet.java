@@ -2,6 +2,7 @@ package model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.awt.Color;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -156,7 +157,30 @@ public class Projet {
 
 
 	public enum Etat {
-		EN_ATTENTE, VALIDE, NON_VALIDE
+		EN_ATTENTE("En Attente"), VALIDE("Validé"), NON_VALIDE("Non Validé");
+		
+		private final String nom;
+		
+		private Etat(String nom){
+			this.nom = nom;
+		}
+		
+		public String toString(){
+			return this.nom;
+		}
+		
+		public Color getColor(){
+			switch(this){
+			case EN_ATTENTE:
+				return Color.yellow;
+			case VALIDE:
+				return Color.green;
+			case NON_VALIDE:
+				return Color.red;
+			default:
+				return Color.black;
+			}
+		}
 	}
 	
 

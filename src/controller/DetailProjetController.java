@@ -31,7 +31,8 @@ public class DetailProjetController {
 					this.viewCallback.lblValidationDePertinence.setText("Valider la pertinence?");
 				}else{
 					this.viewCallback.lblValidationDePertinence.setText(
-							"Pertinence: "+viewCallback.p.getValidationPertinence().toString());
+							"Pertinence:     "+viewCallback.p.getValidationPertinence().toString());
+					this.viewCallback.lblValidationDePertinence.setForeground(viewCallback.p.getValidationPertinence().getColor());
 					this.viewCallback.btnValiderPertinence.setVisible(false);
 					this.viewCallback.btnRefuserPertinence.setVisible(false);
 				}
@@ -43,13 +44,15 @@ public class DetailProjetController {
 						this.viewCallback.lblValidationDePertinence.setText("Valider le budget?");
 					}else{
 						this.viewCallback.lblValidationDePertinence.setText(
-								"Budget: "+viewCallback.p.getValidationBudget().toString());
+								"Budget:     "+viewCallback.p.getValidationBudget().toString());
+						this.viewCallback.lblValidationDePertinence.setForeground(viewCallback.p.getValidationBudget().getColor());
 						this.viewCallback.btnValiderPertinence.setVisible(false);
 						this.viewCallback.btnRefuserPertinence.setVisible(false);
 					}
 				}else{
 					this.viewCallback.lblValidationDePertinence.setText(
-							"Pertinence: "+viewCallback.p.getValidationPertinence().toString());
+							"Pertinence:     "+viewCallback.p.getValidationPertinence().toString());
+					this.viewCallback.lblValidationDePertinence.setForeground(viewCallback.p.getValidationPertinence().getColor());
 					this.viewCallback.btnValiderPertinence.setVisible(false);
 					this.viewCallback.btnRefuserPertinence.setVisible(false);
 				}

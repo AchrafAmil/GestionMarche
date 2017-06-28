@@ -14,6 +14,7 @@ import javax.swing.JTable;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.SystemColor;
+import javax.swing.LayoutStyle.ComponentPlacement;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -30,6 +31,8 @@ public class ListeDesProjets extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     public ListeDesProjets() {
+    	setTitle("Liste des projets");
+    	getContentPane().setBackground(new Color(0, 128, 128));
         initComponents();
         controller = new ListeDesProjetsController(this);
     }
@@ -64,40 +67,42 @@ public class ListeDesProjets extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
         
         JLabel lblListeDesProjets = new JLabel("Liste des projets");
+        lblListeDesProjets.setForeground(new Color(255, 255, 255));
+        lblListeDesProjets.setHorizontalAlignment(SwingConstants.CENTER);
         lblListeDesProjets.setBackground(new Color(230, 230, 250));
-        lblListeDesProjets.setFont(new Font("Trebuchet MS", Font.ITALIC, 19));
+        lblListeDesProjets.setFont(new Font("Cambria", Font.BOLD | Font.ITALIC, 32));
         
         btnNouveauProjet = new JButton("Nouveau Projet");
-        btnNouveauProjet.setBackground(SystemColor.activeCaption);
-        btnNouveauProjet.setForeground(new Color(255, 255, 255));
-        btnNouveauProjet.setFont(new Font("Calibri", Font.BOLD, 16));
+        btnNouveauProjet.setBackground(new Color(255, 255, 255));
+        btnNouveauProjet.setForeground(new Color(0, 0, 0));
+        btnNouveauProjet.setFont(new Font("Calibri", Font.BOLD, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
-        	layout.createParallelGroup(Alignment.TRAILING)
+        	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
         				.addGroup(layout.createSequentialGroup()
-        					.addGap(42)
-        					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 843, GroupLayout.PREFERRED_SIZE))
+        					.addGap(49)
+        					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 870, GroupLayout.PREFERRED_SIZE))
         				.addGroup(layout.createSequentialGroup()
-        					.addGap(360)
-        					.addComponent(lblListeDesProjets, GroupLayout.PREFERRED_SIZE, 190, GroupLayout.PREFERRED_SIZE))
+        					.addGap(324)
+        					.addComponent(lblListeDesProjets, GroupLayout.PREFERRED_SIZE, 287, GroupLayout.PREFERRED_SIZE))
         				.addGroup(layout.createSequentialGroup()
-        					.addGap(399)
-        					.addComponent(btnNouveauProjet)))
-        			.addContainerGap(85, Short.MAX_VALUE))
+        					.addGap(344)
+        					.addComponent(btnNouveauProjet, GroupLayout.PREFERRED_SIZE, 304, GroupLayout.PREFERRED_SIZE)))
+        			.addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
         			.addGap(34)
-        			.addComponent(lblListeDesProjets)
-        			.addGap(26)
+        			.addComponent(lblListeDesProjets, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
+        			.addGap(18)
         			.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 229, GroupLayout.PREFERRED_SIZE)
-        			.addGap(47)
-        			.addComponent(btnNouveauProjet)
-        			.addContainerGap(54, Short.MAX_VALUE))
+        			.addPreferredGap(ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+        			.addComponent(btnNouveauProjet, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+        			.addGap(45))
         );
         getContentPane().setLayout(layout);
 

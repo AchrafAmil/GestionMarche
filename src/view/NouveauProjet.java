@@ -32,11 +32,6 @@ public class NouveauProjet extends JFrame {
 	private JPanel contentPane;
 	
 	private NouveauProjetController controller = new NouveauProjetController(this);
-	
-	public JMenuBar menuBar = new JMenuBar();
-	public JMenuItem nouveau = new JMenuItem("Nouveau");
-	public JMenuItem projet = new JMenuItem("Liste projets");
-	public JMenuItem tache = new JMenuItem("T\u00E2ches");
 	public final JLabel lblNomDuProjet = new JLabel("Nom du projet");
 	public final JTextField nom_projet = new JTextField();
 	public final JLabel lblObjectif = new JLabel("Objectif");
@@ -71,105 +66,101 @@ public class NouveauProjet extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 900, 500);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		menuBar.setBounds(0, 0, 561, 24);
-		contentPane.add(menuBar);
-		
-		
-		menuBar.setForeground(Color.LIGHT_GRAY);
-		menuBar.setBackground(Color.LIGHT_GRAY);
-		menuBar.setBorderPainted(false);
-		
-		
-		projet.setHorizontalAlignment(SwingConstants.LEFT);
-		projet.setBackground(SystemColor.activeCaption);
-		projet.setFont(new Font("Calibri", Font.BOLD, 15));
-		menuBar.add(projet);
-		
-		
-		nouveau.setHorizontalAlignment(SwingConstants.LEFT);
-		nouveau.setBackground(SystemColor.activeCaption);
-		nouveau.setFont(new Font("Calibri", Font.BOLD, 15));
-		menuBar.add(nouveau);
-		
-		
-		tache.setHorizontalAlignment(SwingConstants.LEFT);
-		tache.setBackground(SystemColor.activeCaption);
-		tache.setFont(new Font("Calibri", Font.BOLD, 15));
-		menuBar.add(tache);
-		
-		JMenuItem deconnexion = new JMenuItem("Se d\u00E9connecter");
-		menuBar.add(deconnexion);
-		deconnexion.setHorizontalAlignment(SwingConstants.LEFT);
-		deconnexion.setBackground(SystemColor.activeCaption);
-		deconnexion.setFont(new Font("Calibri", Font.BOLD, 15));
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "Nouveau Projet", TitledBorder.LEFT, TitledBorder.TOP, null, SystemColor.desktop));
-		panel.setBounds(31, 35, 823, 394);
+		panel.setForeground(new Color(255, 0, 0));
+		panel.setBackground(new Color(0, 139, 139));
+		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Nouveau Projet", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(255, 255, 255)));
+		panel.setBounds(102, 32, 671, 397);
 		contentPane.add(panel);
 		panel.setLayout(null);
-		lblNomDuProjet.setFont(new Font("Calibri", Font.BOLD, 17));
-		lblNomDuProjet.setBounds(13, 39, 128, 38);
+		lblNomDuProjet.setForeground(new Color(255, 255, 255));
+		lblNomDuProjet.setFont(new Font("Candara", Font.BOLD, 19));
+		lblNomDuProjet.setBounds(23, 39, 128, 38);
 		
 		panel.add(lblNomDuProjet);
-		nom_projet.setBounds(134, 48, 248, 20);
+		nom_projet.setBackground(new Color(255, 255, 255));
+		nom_projet.setForeground(new Color(0, 0, 0));
+		nom_projet.setFont(new Font("Cambria", Font.PLAIN, 18));
+		nom_projet.setBounds(180, 48, 457, 29);
 		nom_projet.setColumns(10);
 		
 		panel.add(nom_projet);
-		lblObjectif.setFont(new Font("Calibri", Font.BOLD, 17));
-		lblObjectif.setBounds(414, 39, 128, 38);
+		lblObjectif.setForeground(new Color(255, 255, 255));
+		lblObjectif.setFont(new Font("Candara", Font.BOLD, 19));
+		lblObjectif.setBounds(23, 79, 128, 38);
 		
 		panel.add(lblObjectif);
+		objectif.setForeground(new Color(0, 0, 0));
+		objectif.setBackground(new Color(255, 255, 255));
+		objectif.setFont(new Font("Cambria", Font.PLAIN, 18));
 		objectif.setColumns(10);
-		objectif.setBounds(552, 48, 248, 20);
+		objectif.setBounds(180, 88, 457, 29);
 		
 		panel.add(objectif);
-		lblMatrielRequis.setFont(new Font("Calibri", Font.BOLD, 17));
-		lblMatrielRequis.setBounds(13, 107, 128, 38);
+		lblMatrielRequis.setForeground(new Color(255, 255, 255));
+		lblMatrielRequis.setBackground(new Color(255, 255, 255));
+		lblMatrielRequis.setFont(new Font("Candara", Font.BOLD, 19));
+		lblMatrielRequis.setBounds(23, 141, 128, 38);
 		
 		panel.add(lblMatrielRequis);
 		
 		materiel = new JTextArea();
-		materiel.setBounds(134, 114, 248, 61);
+		materiel.setForeground(new Color(0, 0, 0));
+		materiel.setBackground(new Color(255, 255, 255));
+		materiel.setFont(new Font("Cambria", Font.PLAIN, 18));
+		materiel.setBounds(180, 128, 457, 61);
 		panel.add(materiel);
 		
 		JLabel lblLicencesLogiciels = new JLabel("Licences Logiciels");
-		lblLicencesLogiciels.setFont(new Font("Calibri", Font.BOLD, 17));
-		lblLicencesLogiciels.setBounds(414, 107, 128, 38);
+		lblLicencesLogiciels.setForeground(new Color(255, 255, 255));
+		lblLicencesLogiciels.setFont(new Font("Candara", Font.BOLD, 19));
+		lblLicencesLogiciels.setBounds(23, 217, 150, 38);
 		panel.add(lblLicencesLogiciels);
 		
 		licence = new JTextArea();
-		licence.setBounds(552, 114, 248, 61);
+		licence.setForeground(new Color(0, 0, 0));
+		licence.setBackground(new Color(255, 255, 255));
+		licence.setFont(new Font("Cambria", Font.PLAIN, 18));
+		licence.setBounds(180, 206, 457, 61);
 		panel.add(licence);
 		
 		JLabel lblEstimationBudget = new JLabel("Budget Estim\u00E9");
-		lblEstimationBudget.setFont(new Font("Calibri", Font.BOLD, 17));
-		lblEstimationBudget.setBounds(192, 207, 150, 38);
+		lblEstimationBudget.setForeground(new Color(255, 255, 255));
+		lblEstimationBudget.setBackground(new Color(255, 255, 255));
+		lblEstimationBudget.setFont(new Font("Candara", Font.BOLD, 19));
+		lblEstimationBudget.setBounds(23, 273, 150, 38);
 		panel.add(lblEstimationBudget);
 		
 		budget = new JTextField();
+		budget.setBackground(new Color(255, 255, 255));
+		budget.setForeground(new Color(0, 0, 0));
+		budget.setFont(new Font("Calibri", Font.PLAIN, 18));
 		budget.setColumns(10);
-		budget.setBounds(315, 216, 248, 20);
+		budget.setBounds(180, 278, 457, 29);
 		panel.add(budget);
 		
 		JButton btnNewButton = new JButton("Valider");
+		btnNewButton.setBackground(new Color(255, 255, 255));
 		btnNewButton.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 18));
-		btnNewButton.setBounds(223, 306, 135, 57);
+		btnNewButton.setBounds(250, 342, 183, 38);
 		btnNewButton.addActionListener(controller.new ValiderButtonListener());
 		panel.add(btnNewButton);
 		
 		
 		JButton btnAnnuler = new JButton("Annuler");
+		btnAnnuler.setBackground(new Color(255, 255, 255));
 		btnAnnuler.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				NouveauProjet.this.dispose();
 			}
 		});
 		btnAnnuler.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 18));
-		btnAnnuler.setBounds(470, 306, 135, 57);
+		btnAnnuler.setBounds(451, 342, 183, 38);
 		panel.add(btnAnnuler);
 	}
 }

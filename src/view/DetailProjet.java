@@ -40,11 +40,6 @@ public class DetailProjet extends JFrame {
 	public Projet p;
 	
 	private DetailProjetController controller;
-	
-	private JMenuBar menuBar = new JMenuBar();
-	private JMenuItem nouveau = new JMenuItem("Nouveau");
-	private JMenuItem projet = new JMenuItem("Liste projets");
-	private JMenuItem tache = new JMenuItem("T\u00E2ches");
 	private final JLabel lblNomDuProjet = new JLabel("Nom du projet");
 	private final JLabel lblNomEmployer = new JLabel("Nom Employer");
 	private final JTextField nom_projet = new JTextField();
@@ -76,141 +71,127 @@ public class DetailProjet extends JFrame {
 	 */
 	public DetailProjet(Projet p) {
 		this.p = p;
-		setTitle("Extra Project Informations");
+		setTitle("D\u00E9tail du Projet S\u00E9lectionn\u00E9");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 900, 500);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		menuBar.setBounds(0, 0, 561, 24);
-		contentPane.add(menuBar);
-		
-		
-		menuBar.setForeground(Color.LIGHT_GRAY);
-		menuBar.setBackground(Color.LIGHT_GRAY);
-		menuBar.setBorderPainted(false);
-		
-		
-		projet.setHorizontalAlignment(SwingConstants.LEFT);
-		projet.setBackground(SystemColor.activeCaption);
-		projet.setFont(new Font("Calibri", Font.BOLD, 15));
-		menuBar.add(projet);
-		
-		
-		nouveau.setHorizontalAlignment(SwingConstants.LEFT);
-		nouveau.setBackground(SystemColor.activeCaption);
-		nouveau.setFont(new Font("Calibri", Font.BOLD, 15));
-		menuBar.add(nouveau);
-		
-		
-		tache.setHorizontalAlignment(SwingConstants.LEFT);
-		tache.setBackground(SystemColor.activeCaption);
-		tache.setFont(new Font("Calibri", Font.BOLD, 15));
-		menuBar.add(tache);
-		
-		JMenuItem deconnexion = new JMenuItem("Se d\u00E9connecter");
-		menuBar.add(deconnexion);
-		deconnexion.setHorizontalAlignment(SwingConstants.LEFT);
-		deconnexion.setBackground(SystemColor.activeCaption);
-		deconnexion.setFont(new Font("Calibri", Font.BOLD, 15));
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "Detail Projet", TitledBorder.LEFT, TitledBorder.TOP, null, SystemColor.desktop));
-		panel.setBounds(31, 35, 823, 394);
+		panel.setBackground(new Color(0, 128, 128));
+		panel.setForeground(new Color(255, 255, 255));
+		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Detail Projet", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(255, 255, 255)));
+		panel.setBounds(112, 36, 671, 394);
 		contentPane.add(panel);
 		panel.setLayout(null);
-		lblNomDuProjet.setFont(new Font("Calibri", Font.BOLD, 17));
+		lblNomDuProjet.setForeground(new Color(255, 255, 255));
+		lblNomDuProjet.setFont(new Font("Candara", Font.BOLD, 19));
 		lblNomDuProjet.setBounds(13, 39, 128, 38);
 		
 		panel.add(lblNomDuProjet);
+		nom_projet.setBackground(new Color(255, 255, 255));
 		nom_projet.setEditable(false);
-		nom_projet.setBounds(134, 48, 248, 20);
+		nom_projet.setBounds(161, 44, 457, 29);
 		nom_projet.setColumns(10);
 		nom_projet.setText(p.getNom());
 		
 		panel.add(nom_projet);
-		lblNomEmployer.setFont(new Font("Calibri", Font.BOLD, 17));
-		lblNomEmployer.setBounds(429, 39, 112, 38);
+		lblNomEmployer.setForeground(new Color(255, 255, 255));
+		lblNomEmployer.setFont(new Font("Candara", Font.BOLD, 19));
+		lblNomEmployer.setBounds(13, 79, 128, 38);
 		
 		panel.add(lblNomEmployer);
+		nom_employer.setBackground(new Color(255, 255, 255));
 		nom_employer.setEditable(false);
 		nom_employer.setColumns(10);
-		nom_employer.setBounds(551, 48, 248, 20);
+		nom_employer.setBounds(161, 84, 457, 29);
 		nom_employer.setText(p.getUtilisateur().getNom() +" ("+p.getUtilisateur().getLogin()+")");
 		
 		panel.add(nom_employer);
-		lblObjectif.setFont(new Font("Calibri", Font.BOLD, 17));
-		lblObjectif.setBounds(13, 88, 128, 38);
+		lblObjectif.setForeground(new Color(255, 255, 255));
+		lblObjectif.setFont(new Font("Candara", Font.BOLD, 19));
+		lblObjectif.setBounds(13, 113, 128, 38);
 		
 		panel.add(lblObjectif);
+		objectif.setBackground(new Color(255, 255, 255));
 		objectif.setEditable(false);
 		objectif.setColumns(10);
-		objectif.setBounds(134, 97, 248, 20);
+		objectif.setBounds(161, 124, 457, 29);
 		objectif.setText(p.getObjectif());
 		
 		panel.add(objectif);
-		lblMatrielRequis.setFont(new Font("Calibri", Font.BOLD, 17));
-		lblMatrielRequis.setBounds(13, 137, 128, 38);
+		lblMatrielRequis.setForeground(new Color(255, 255, 255));
+		lblMatrielRequis.setFont(new Font("Candara", Font.BOLD, 19));
+		lblMatrielRequis.setBounds(13, 155, 128, 38);
 		
 		panel.add(lblMatrielRequis);
 		
 		JTextArea materiel = new JTextArea();
 		materiel.setBackground(Color.WHITE);
 		materiel.setEditable(false);
-		materiel.setBounds(134, 128, 248, 61);
+		materiel.setBounds(43, 189, 260, 61);
 		panel.add(materiel);
 		materiel.setText(p.getMaterielRequis());
 		
 		JLabel lblLicencesLogiciels = new JLabel("Licences Logiciels");
-		lblLicencesLogiciels.setFont(new Font("Calibri", Font.BOLD, 17));
-		lblLicencesLogiciels.setBounds(424, 137, 128, 38);
+		lblLicencesLogiciels.setForeground(new Color(255, 255, 255));
+		lblLicencesLogiciels.setFont(new Font("Candara", Font.BOLD, 19));
+		lblLicencesLogiciels.setBounds(342, 155, 155, 38);
 		panel.add(lblLicencesLogiciels);
 		
 		JTextArea licence = new JTextArea();
+		licence.setBackground(new Color(255, 255, 255));
 		licence.setEditable(false);
-		licence.setBounds(552, 144, 248, 61);
+		licence.setBounds(370, 189, 248, 61);
 		panel.add(licence);
 		licence.setText(p.getLicencesLogiciels());
 		
-		JLabel lblDure = new JLabel("Crée le");
-		lblDure.setFont(new Font("Calibri", Font.BOLD, 17));
-		lblDure.setBounds(13, 220, 128, 38);
+		JLabel lblDure = new JLabel("Cree le");
+		lblDure.setForeground(new Color(255, 255, 255));
+		lblDure.setFont(new Font("Candara", Font.BOLD, 19));
+		lblDure.setBounds(13, 261, 128, 38);
 		panel.add(lblDure);
 		
 		duree = new JTextField();
+		duree.setBackground(new Color(255, 255, 255));
 		duree.setEditable(false);
 		duree.setColumns(10);
-		duree.setBounds(134, 229, 248, 20);
+		duree.setBounds(107, 266, 196, 29);
 		panel.add(duree);
 		duree.setText(p.getDate().toGMTString());
 		
 		JLabel lblEstimationBudget = new JLabel("Budget Estim\u00E9");
-		lblEstimationBudget.setFont(new Font("Calibri", Font.BOLD, 17));
-		lblEstimationBudget.setBounds(424, 220, 150, 38);
+		lblEstimationBudget.setForeground(new Color(255, 255, 255));
+		lblEstimationBudget.setFont(new Font("Candara", Font.BOLD, 19));
+		lblEstimationBudget.setBounds(342, 261, 150, 38);
 		panel.add(lblEstimationBudget);
 		
 		budget = new JTextField();
+		budget.setBackground(new Color(255, 255, 255));
 		budget.setEditable(false);
 		budget.setColumns(10);
-		budget.setBounds(551, 229, 248, 20);
+		budget.setBounds(468, 266, 150, 29);
 		panel.add(budget);
 		budget.setText(p.getBudget()+" MAD");
+		lblValidationDePertinence.setForeground(new Color(255, 255, 255));
 		
-		lblValidationDePertinence.setFont(new Font("Calibri", Font.BOLD, 17));
-		lblValidationDePertinence.setBounds(305, 287, 223, 20);
+		lblValidationDePertinence.setFont(new Font("Candara", Font.BOLD, 19));
+		lblValidationDePertinence.setBounds(32, 338, 223, 20);
 		
 		panel.add(lblValidationDePertinence);
-		btnValiderPertinence.setFont(new Font("Calibri", Font.BOLD, 15));
+		btnValiderPertinence.setFont(new Font("Calibri", Font.BOLD, 19));
 		btnValiderPertinence.setForeground(new Color(255, 255, 255));
 		btnValiderPertinence.setBackground(new Color(46, 139, 87));
-		btnValiderPertinence.setBounds(265, 328, 99, 29);
+		btnValiderPertinence.setBounds(265, 328, 139, 38);
 		
 		panel.add(btnValiderPertinence);
-		btnRefuserPertinence.setFont(new Font("Calibri", Font.BOLD, 15));
+		btnRefuserPertinence.setFont(new Font("Calibri", Font.BOLD, 19));
 		btnRefuserPertinence.setForeground(new Color(255, 255, 255));
 		btnRefuserPertinence.setBackground(new Color(255, 0, 0));
-		btnRefuserPertinence.setBounds(429, 328, 99, 29);
+		btnRefuserPertinence.setBounds(414, 328, 139, 38);
 		
 		panel.add(btnRefuserPertinence);
 		
